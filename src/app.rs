@@ -1,18 +1,22 @@
+use egui_commonmark::{commonmark, commonmark_str, CommonMarkCache};
+
 #[derive(serde::Deserialize, serde::Serialize)]
 #[serde(default)]
 pub struct App {
-    label: String,
+    about_open: bool,
+    avatar_open: bool,
 
-    #[serde(skip)] // This how you opt-out of serialization of a field
-    value: f32,
+    /// Cache for [egui_commonmark]
+    #[serde(skip)]
+    markdown_cache: CommonMarkCache,
 }
 
 impl Default for App {
     fn default() -> Self {
         Self {
-            // Example stuff:
-            label: "Hello World!".to_owned(),
-            value: 2.7,
+            markdown_cache: Default::default(),
+            about_open: true,
+            avatar_open: true,
         }
     }
 }
@@ -36,37 +40,67 @@ impl eframe::App for App {
     }
 
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        egui_extras::install_image_loaders(ctx);
+
         egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
             egui::menu::bar(ui, |ui| {
                 egui::widgets::global_theme_preference_switch(ui);
+
+                ui.separator();
+
+                if ui.button("About").clicked() {
+                    self.about_open = !self.about_open
+                }
+
+                if ui.button("Avatar").clicked() {
+                    self.avatar_open = !self.avatar_open
+                }
             });
         });
 
-        egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("eframe template");
+        let about_response = egui::Window::new("About")
+            .open(&mut self.about_open)
+            .scroll(true)
+            .show(ctx, |ui| {
+                // Displays url in tooltip when hovered
+                ui.style_mut().url_in_tooltip = true;
 
-            ui.horizontal(|ui| {
-                ui.label("Write something: ");
-                ui.text_edit_singleline(&mut self.label);
+                commonmark_str!(ui, &mut self.markdown_cache, "markdown/about.md");
             });
 
-            ui.add(egui::Slider::new(&mut self.value, 0.0..=10.0).text("value"));
-            if ui.button("Increment").clicked() {
-                self.value += 1.0;
-            }
+        // Sets the avatar to be left of the about
+        let mut avatar_window = egui::Window::new("Avatar");
+        if let Some(response) = about_response {
+            avatar_window = avatar_window.default_pos(response.response.rect.left_top());
+        }
+        avatar_window
+            .open(&mut self.avatar_open)
+            .scroll(true)
+            .show(ctx, |ui| {
+                // Displays url in tooltip when hovered
+                ui.style_mut().url_in_tooltip = true;
 
-            ui.separator();
+                commonmark!(
+                    ui,
+                    &mut self.markdown_cache,
+                    "Avatar sourced from my [GitHub](https://github.com/tye-exe)."
+                );
+                ui.image("https://avatars.githubusercontent.com/tye-exe");
+            });
+
+        egui::TopBottomPanel::bottom("bottom_panel").show(ctx, |ui| {
+            egui::warn_if_debug_build(ui);
 
             ui.add(egui::github_link_file!(
-                "https://github.com/emilk/eframe_template/blob/main/",
+                "https://github.com/tye-exe/tye-home",
                 "Source code."
             ));
 
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
-                powered_by_egui_and_eframe(ui);
-                egui::warn_if_debug_build(ui);
-            });
+            powered_by_egui_and_eframe(ui);
         });
+
+        // Allows the centeral panel to change with the theme
+        egui::CentralPanel::default().show(ctx, |_ui| {});
     }
 }
 
