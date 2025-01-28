@@ -91,10 +91,7 @@ impl eframe::App for App {
         egui::TopBottomPanel::bottom("bottom_panel").show(ctx, |ui| {
             egui::warn_if_debug_build(ui);
 
-            ui.add(egui::github_link_file!(
-                "https://github.com/tye-exe/tye-home",
-                "Source code."
-            ));
+            ui.hyperlink_to("Source Code", "https://github.com/tye-exe/tye-home");
 
             powered_by_egui_and_eframe(ui);
         });
