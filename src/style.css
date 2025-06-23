@@ -51,3 +51,13 @@
 a {
   text-decoration: underline
 }
+
+/* Styles nav bar */
+
+li:has(a) {
+  margin-bottom: var(--global-space)
+}
+
+li ul {
+  margin-top: var(--global-space)
+}
