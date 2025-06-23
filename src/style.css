@@ -48,6 +48,8 @@
   display: block;
 }
 
+/* Allows links to be identified without color */
+
 a {
   text-decoration: underline
 }
@@ -60,4 +62,10 @@ li:has(a) {
 
 li ul {
   margin-top: var(--global-space)
+}
+
+/* So the theme buttons feel like buttons */
+
+.theme_option {
+  cursor: pointer;
 }
