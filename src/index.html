@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tye's home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="terminal.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="topbar container">
+      <p class="terminal-prompt" style="padding-left: 0em;">Theme</p>
+      <p onclick="set_light()">Light</p>
+      <p onclick="set_dark()">Dark</p>
+    </div>
+    <div class="container">
+      <div class="components components-grid">
+        <div>
+          <aside>
+            <div class="terminal-card">
+              <header>Tye : She/They</header>
+              <div>
+                <picture>
+                  <source class="pfp" srcset="images/pfp.avif" type="image/avif">
+                  <img class="pfp" src="images/pfp.jpg" alt="Drawing of a cat holding a fish">
+                </picture>
+              </div>
+            </div>
+            <hr>
+            <nav>
+              <h3 style="margin-bottom: 0;">Jump Table</h3>
+              <ul style="margin-top: 0;">
+                <li><a href="#welcome">Welcome</a></li>
+                <li><a href="#codings">Coding</a>
+                  <ul>
+                    <li><a href="#rust_n_java">Rust (and Java)</a></li>
+                    <li><a href="#nix">Nix</a></li>
+                  </ul></li>
+                <li><a href="#parting">Parting</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+        <main>
+          <h1 id="welcome" style="padding-top: 0;">Welcome Traveler!</h1>
+          <p>
+            Heyo, i'm tye, it's nice to meet you. Well
+            <i>kinda</i>
+            meeting, since i'm just text on a website. Hmm... Would this count as "time-travel"? Since these words are from a me in the past, so you're reading the thoughts that i've tip tapped onto the computer from some time in the not so distant past.
+          </p>
+          <p>
+            Anyway, back to the point (if there even is one). I hope you enjoy my website and perhaps even reading a bit about me and the things that i do!
+          </p>
+          <hr>
+          <h2 id="codings">Codings</h2>
+          <p>
+            Messing around with computers (also known as coding) is what i
+            <s>love</s>
+            <s>enjoy</s>
+            tolerate? I'm joking, it's my favorite thing! I have been coding since i figured out how to install
+            <a href="https://www.python.org/">Python</a>
+            back when i was but a child and have never looked back. Over my years of staring at the computer screen, i have sank hours upon hours into Python and
+            <a href="https://dev.java/learn/">Java</a>, but the two languages that i enjoy fighting with/programming in the most are
+            <a href="https://www.rust-lang.org/">Rust</a>
+            and
+            <a href="https://nixos.org/">Nix</a>, both of which i adore for different reasons.
+          </p>
+          <h3 id="rust_n_java">Rust (and Java)</h3>
+          <p>
+            Rust, is there anything new for me to say about it? I'm not really sure, as i will just end up echoing about the memory safety and performance as everyone else does. However, i can add my own tidbit to the table.
+          </p>
+          <p>
+            Before discovering rust, and yes i will say discover, i primarily used Java. Java has its quirks and odd moments, as all languages do, but the parts that annoyed me the most about Java is the fact the null exists and that runtime errors do not have to be declared in the function signature.
+            The former is a nightmare when trying to work with data that is returned from any functions that do not mention that they might return null. The latter annoys me when i'm trying to find out how and where code can fail, so i can handle it gracefully.
+          </p>
+          <p>
+            Rust's answer to null is just removing it, null does not exist in Rust. A choice for which i am grateful, as i do not have to deal with "The Billion Dollar Mistake" that null has been labeled.
+            For errors, Rust handles them beautifully, integerating them into the type system. Alas,
+            <code>panic!()</code>
+            does exist in Rust, but some errors are much too tedious to be dealt with constantly (looking at you out of memory errors).
+          </p>
+          <p>
+            At the end of the day, Java is still a language that i spent a lot of time in and that i still hold fondly. Maybe one day i will pick it up again when it is the best solution to a problem that i am facing.
+          </p>
+          <h3 id="nix">Nix</h3>
+          <p>
+            I'm quite sure that Nix is far less popular than Rust, which is admittedly deserved, as Nix still has not quite reached the stage where it is "easy" to pick up (mainly due to the documentation). However, it is easy for me to look past this for the most important thing it provides:
+            <strong>Reproducibility</strong>.
+          </p>
+          <p>
+            Being able to fully recreate any environment and configuration on any machine at any time is a form of a super power. Similar to
+            <a href="https://www.docker.com/">Docker</a>
+            it prevents the whole "it works on my machine!" issue that so commonly comes up by defining the entire environment so it can be recreated. This is one of the primary reasons why Nixpkgs has the largest and most up to date collection of packages out of any package manager, which is also a big reason why i stick with Nix. The ability to see software and temporarily download it, just to mess around, and then having it be cleaned up after is so freeing. I love it.
+          </p>
+          <p>
+            Going back to the
+            <strong>Reproducibility</strong>, Nix has convinced my brain that it is working spending time on configuring tools such as Git and
+            <a href="https://helix-editor.com/">Helix</a>
+            (my IDE) to my exact liking is worth it, because the settings are stored centerally in one placed and shared across all of my devices. It takes time to get everything set up the way i like it, but now that i have i'm always able to work how i want, without ever having to worry about trying to synchronise all of my settings (or trying to remember that one obscure setting that i changed years ago and is essential).
+          </p>
+          <hr>
+          <h1 id="parting">Partings Traveler</h1>
+          <p>
+            I have enjoyed having you around, stay safe out there on the interwebs!
+          </p>
+          <br>
+        </main>
+      </div>
+    </div>
+    <script src="code.js"></script>
+  </body>
+</html>
