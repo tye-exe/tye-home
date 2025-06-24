@@ -21,6 +21,9 @@
   --code-bg-color: #3f3f44;
   --input-style: solid;
   --display-h1-decoration: none;
+  --menu-btn-bar-width: 2em;
+  --mobile-topbar-height: 3.5em;
+  --mobile-sidebar-width: 50%;
 }
 
 .topbar {
@@ -42,6 +45,10 @@
 }
 
 @media screen and (max-width: 700px) {
+  .topbar {
+    height: var(--mobile-topbar-height);
+  }
+
   /* Hide sidebar, but have it be a nice sticky menu if activated */
 
   .sidebar {
@@ -52,8 +59,8 @@
   .sidebar-mobile {
     position: fixed;
     left: 0;
-    width: 50%;
-    height: 100%;
+    width: var(--mobile-sidebar-width);
+    height: calc(100% - var(--mobile-topbar-height));
     z-index: 999;
     background-color: var(--background-color);
     border-right-color: var(--secondary-color);
@@ -72,7 +79,7 @@
   /* Creates a burger menu for the sidebar */
 
   .menu-bar {
-    width: 2em;
+    width: var(--menu-btn-bar-width);
     height: 0.2em;
     background-color: var(--font-color);
     margin-top: 0;
@@ -82,6 +89,15 @@
   .mobile-menu-btn {
     float: right;
     margin-left: auto;
+    cursor: pointer;
+  }
+
+  .mobile-menu-sidebar-btn {
+    /* So that it is fixed at the bottom */
+    position: fixed;
+    bottom: var(--global-space);
+    /* Align to just left of the sidebar edge */
+    margin-left: calc(var(--mobile-sidebar-width) - (var(--menu-btn-bar-width) + var(--global-space)));
     cursor: pointer;
   }
 
