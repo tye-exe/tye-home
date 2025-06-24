@@ -12,10 +12,17 @@
       <p class="terminal-prompt" style="padding-left: 0em;">Theme</p>
       <p class="theme_option" onclick="set_light()">Light</p>
       <p class="theme_option" onclick="set_dark()">Dark</p>
+      <p></p>
+      <!-- Mobile only -->
+      <div class="mobile-menu-btn" onclick="show_mobile_menu()">
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
+      </div>
     </div>
     <div class="container">
       <div class="components components-grid">
-        <div>
+        <div class="sidebar" id="sidebar">
           <aside>
             <div class="terminal-card">
               <header>Tye : She/They</header>
@@ -26,8 +33,8 @@
                 </picture>
               </div>
             </div>
-            <hr>
-            <nav>
+            <hr class="sidebar_separator">
+            <nav class="jump-table">
               <h3 style="margin-bottom: 0;">Jump Table</h3>
               <ul style="margin-top: 0;">
                 <li><a href="#welcome">Welcome</a></li>

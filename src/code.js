@@ -56,3 +56,18 @@ function set_dark() {
   setCSSVariables(darkMode);
 }
 
+// Toggle sidebar between hidden and shown on mobile.
+function show_mobile_menu() {
+  let sidebar = document.getElementById("sidebar");
+
+  let to_add = "sidebar";
+  let to_remove = "sidebar-mobile";
+
+  if (sidebar.classList.contains("sidebar")) {
+    to_add = "sidebar-mobile";
+    to_remove = "sidebar"
+  }
+
+  sidebar.classList.add(to_add);
+  sidebar.classList.remove(to_remove);
+}
